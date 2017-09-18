@@ -1,25 +1,20 @@
 <template>
   <v-toolbar fixed class="light-green lighten-2">
     <v-toolbar-title class="mr-4">
-
       <router-link to="/" class="light-green lighten-2 btn flat dark">
         Tab Tracker
       </router-link>
-
     </v-toolbar-title>
 
     <v-spacer />
 
-    <v-toolbar-items>
-
+    <v-toolbar-items v-if="!$store.state.isUserLoggedIn">
       <router-link to="login" class="light-green lighten-2 btn flat dark">
         Login
       </router-link>
-
       <router-link to="register" class="light-green lighten-2 btn flat dark">
         Sign Up
       </router-link>
-
     </v-toolbar-items>
   </v-toolbar>
 </template>

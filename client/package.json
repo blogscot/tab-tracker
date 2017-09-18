@@ -17,7 +17,9 @@
     "axios": "^0.16.2",
     "vue": "^2.4.2",
     "vue-router": "^2.7.0",
-    "vuetify": "^0.15.7"
+    "vuetify": "^0.15.7",
+    "vuex": "^2.4.0",
+    "vuex-router-sync": "^4.3.2"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
@@ -38,7 +40,7 @@
     "cross-spawn": "^5.0.1",
     "css-loader": "^0.28.0",
     "cssnano": "^3.10.0",
-    "eslint": "^3.19.0",
+    "eslint": "^4.7.0",
     "eslint-config-standard": "^6.2.1",
     "eslint-friendly-formatter": "^3.0.0",
     "eslint-loader": "^1.7.1",
