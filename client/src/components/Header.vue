@@ -12,6 +12,10 @@
 
     <v-toolbar-items>
 
+      <router-link to="login" class="light-green lighten-2 btn flat dark">
+        Login
+      </router-link>
+
       <router-link to="register" class="light-green lighten-2 btn flat dark">
         Sign Up
       </router-link>
