@@ -9,7 +9,7 @@
           <v-text-field type="email" name="email" label="Email" v-model="email"></v-text-field>
           <v-text-field type="password" name="password" label="Password" v-model="password"></v-text-field>
           <div class="error" v-html="error"></div>
-          <v-btn class="theme-color" @click="login" type="submit">Login</v-btn>
+          <v-btn class="light-green lighten-2" @click="login" type="submit">Login</v-btn>
         </div>
       </div>
     </v-flex>
@@ -44,6 +44,8 @@ export default {
 
 <style scoped>
 .error {
-  color: red;
+  background-color: red;
+  color: white;
+  font-size: 18px;
 }
 </style>

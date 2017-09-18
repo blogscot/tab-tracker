@@ -23,8 +23,7 @@ module.exports = {
       })
     } catch (err) {
       res.status(400).send({
-        error: login_error,
-        debug: 'Error creating new user',
+        error: 'User is already registered',
       })
     }
   },
@@ -38,14 +37,12 @@ module.exports = {
     if (!user) {
       return res.status(400).send({
         error: login_error,
-        debug: 'Unidentified user',
       })
     }
     const isPasswordValid = await user.comparePassword(password)
     if (!isPasswordValid) {
       res.status(400).send({
         error: login_error,
-        debug: 'invalid password',
       })
     }
     const userJson = user.toJSON()
