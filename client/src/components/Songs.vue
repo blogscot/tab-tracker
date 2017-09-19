@@ -2,13 +2,13 @@
   <v-layout column>
     <v-flex xs6 offset-xs3>
       <panel title="Songs">
-        <div slot='action'>
-          <v-btn icon>
+        <router-link to="home" slot='action' class="song" right>
+          <v-btn class="light-green lighten-2" medium fab>
             <v-icon>
               add
             </v-icon>
           </v-btn>
-        </div>
+        </router-link>
         <div :key="song.id" v-for="song in songs">
           Song: {{song.title}} Artist: {{song.artist}} Album: {{song.album}}
         </div>
@@ -37,5 +37,7 @@ export default {
 </script>
 
 <style scoped>
-
+.song {
+  text-decoration: none;
+}
 </style>
