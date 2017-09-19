@@ -13,6 +13,9 @@ export default new Vuex.Store({
   mutations: {
     setToken(state, token) {
       state.token = token
+      // FIXME
+      // This implementation makes the user logged in
+      // as soon as they register!
       state.isUserLoggedIn = !!token
     },
     setUser(state, user) {

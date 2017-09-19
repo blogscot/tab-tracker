@@ -1,25 +1,23 @@
 <template>
   <v-layout column>
     <v-flex xs6 offset-xs3>
-      <div class="white elevation-2">
-        <v-toolbar flat dense class="light-green lighten-2">
-          <v-toolbar-title>Register</v-toolbar-title>
-        </v-toolbar>
-        <div class="pl-4 pr-4 pt-2 pb-2">
-          <form name="tab-tracker-form" autocomplete="off" @click="register($event)">
-            <v-text-field type="email" name="email" label="Email" v-model="email" />
-            <v-text-field type="password" name="password" label="Password" v-model="password" autocomplete="new-password" />
-            <div class="error" v-html="error"></div>
-            <v-btn class="light-green lighten-2" type="submit ">Register</v-btn>
-          </form>
-        </div>
-      </div>
+      <panel title="Register">
+        <form name="tab-tracker-form" autocomplete="off">
+          <v-text-field type="email" name="email" label="Email" v-model="email" />
+          <v-text-field type="password" name="password" label="Password" v-model="password" autocomplete="new-password" />
+          <div class="error" v-html="error"></div>
+          <v-btn class="light-green lighten-2" type="submit" @click="register($event)">Register</v-btn>
+        </form>
+      </panel>
     </v-flex>
   </v-layout>
 </template>
 
+
 <script>
 import AuthenticationService from '@/services/AuthenticationService'
+import Panel from '@/components/Panel'
+
 export default {
   data() {
     return {
@@ -28,6 +26,10 @@ export default {
       error: null
     }
   },
+  components: { Panel },
+  props: [
+    'title'
+  ],
   methods: {
     async register(event) {
       event.preventDefault()
@@ -39,6 +41,9 @@ export default {
         })
         this.$store.dispatch('setToken', response.data.token)
         this.$store.dispatch('setUser', response.data.usr)
+        this.$router.push({
+          name: 'home'
+        })
       } catch (error) {
         this.error = error.response.data.error
       }
