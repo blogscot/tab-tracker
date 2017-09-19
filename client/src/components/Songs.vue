@@ -2,6 +2,13 @@
   <v-layout column>
     <v-flex xs6 offset-xs3>
       <panel title="Songs">
+        <div slot='action'>
+          <v-btn icon>
+            <v-icon>
+              add
+            </v-icon>
+          </v-btn>
+        </div>
         <div :key="song.id" v-for="song in songs">
           Song: {{song.title}} Artist: {{song.artist}} Album: {{song.album}}
         </div>
