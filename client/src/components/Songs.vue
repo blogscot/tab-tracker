@@ -2,8 +2,8 @@
   <v-layout column>
     <v-flex xs6 offset-xs3>
       <panel title="Songs">
-        <router-link to="home" slot='action' class="song" right>
-          <v-btn class="light-green lighten-2" medium fab>
+        <router-link to="home" slot='action' class="song">
+          <v-btn class="light-green lighten-2" small medium fab>
             <v-icon>
               add
             </v-icon>
@@ -39,5 +39,8 @@ export default {
 <style scoped>
 .song {
   text-decoration: none;
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
 }
 </style>
