@@ -13,13 +13,23 @@ module.exports = {
       })
     }
   },
+  async show (req, res) {
+    try {
+      const song = await Song.findById(req.params.songId)
+      res.send(song)
+    } catch (error) {
+      res.status(500).send({
+        error: 'Show: Unable to serve song data'
+      })
+    }
+  },
   async post (req, res) {
     try {
       const song = await Song.create(req.body)
       res.send(song)
     } catch (error) {
       res.status(500).send({
-        error: 'Unable to create song entry'
+        error: 'Post: Unable to create song entry'
       })
     }
   }

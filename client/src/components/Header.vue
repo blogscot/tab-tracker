@@ -7,7 +7,7 @@
     </v-toolbar-title>
 
     <v-toolbar-items>
-      <router-link to="songs" class="light-green lighten-2 btn flat dark">
+      <router-link to="/songs" class="light-green lighten-2 btn flat dark">
         Browse
       </router-link>
     </v-toolbar-items>
