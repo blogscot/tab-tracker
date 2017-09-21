@@ -5,12 +5,14 @@ import App from './App'
 import router from './router'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
+import VueYouTubeEmbed from 'vue-youtube-embed'
 
 import { sync } from 'vuex-router-sync'
 import store from '@/store/store'
 
 Vue.config.productionTip = false
 
+Vue.use(VueYouTubeEmbed)
 Vue.use(Vuetify)
 
 sync(store, router)
