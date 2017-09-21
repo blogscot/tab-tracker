@@ -9,7 +9,6 @@
       <v-flex v-if="song" xs6 class="ml-2">
         <you-tube :youtubeId="song.youtubeId" />
       </v-flex>
-
     </v-layout>
 
     <v-layout row>
@@ -20,7 +19,6 @@
       <v-flex xs6 v-if="song" class="ml-2 mt-2">
         <tab :tab="song.tab" />
       </v-flex>
-
     </v-layout>
 
   </v-container>

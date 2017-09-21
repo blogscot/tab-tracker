@@ -2,7 +2,7 @@
   <v-container fluid>
 
     <v-layout column>
-      <v-flex xs10 offset-xs1>
+      <v-flex xs6 offset-xs3>
         <panel title="Songs">
           <router-link to="home" slot='action' class="song-button">
             <v-btn class="light-green lighten-2" medium fab>
@@ -69,7 +69,7 @@ export default {
 
 .song {
   padding: 20px;
-  height: 330px;
+  height: 440px;
   overflow: hidden;
 }
 
@@ -86,7 +86,7 @@ export default {
 }
 
 .album-image {
-  width: 90%;
+  width: 80%;
   margin: 0 auto;
 }
 </style>
