@@ -35,25 +35,9 @@ module.exports = {
   },
   async update (req, res) {
     const song = req.body
-    const songId = req.params.songId
+    const id = req.params.songId
     try {
-      await Song.update(
-        {
-          title: song.title,
-          artist: song.artist,
-          genre: song.genre,
-          album: song.album,
-          albumImageUrl: song.albumImageUrl,
-          youtubeId: song.youtubeId,
-          lyrics: song.lyrics,
-          tab: song.tab
-        },
-        {
-          where: {
-            id: songId
-          }
-        }
-      )
+      await Song.update(song, { where: { id } })
       res.status(200).send({
         message: 'ok'
       })
