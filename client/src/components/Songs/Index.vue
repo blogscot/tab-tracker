@@ -3,29 +3,19 @@
     <v-layout column>
       <v-flex xs6 offset-xs3>
         <songs-search />
-        <songs-panel :songs="songs" />
+        <songs-panel class="mt-2" />
       </v-flex>
     </v-layout>
   </v-container>
 </template>
 
 <script>
-import SongsService from '@/services/SongService'
 import SongsPanel from './SongsPanel'
 import SongsSearch from './SongsSearch'
 export default {
   components: {
     SongsPanel,
     SongsSearch
-  },
-  data() {
-    return {
-      songs: null
-    }
-  },
-  async mounted() {
-    const response = await SongsService.index()
-    this.songs = response.data
   }
 }
 </script>

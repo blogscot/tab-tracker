@@ -35,10 +35,28 @@
 </template>
 
 <script>
+import SongsService from '@/services/SongService'
+
 export default {
-  props: [
-    'songs'
-  ]
+  data() {
+    return {
+      'songs': null
+    }
+  },
+  async mounted() {
+    const response = await SongsService.index()
+    this.songs = response.data
+  },
+  watch: {
+    '$route.query.search': {
+      immediate: true,
+      async handler(value) {
+        const response = await SongsService.index(value)
+        this.songs = response.data
+        console.log(this.songs)
+      }
+    }
+  }
 }
 </script>
 
