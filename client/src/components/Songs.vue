@@ -27,6 +27,9 @@
                 <router-link :to="{name: 'song', params: {songId: song.id}}" class="light-green lighten-2 btn">
                   View
                 </router-link>
+                <router-link :to="{name: 'song/edit', params: {songId: song.id}}" class="light-green lighten-2 btn">
+                  Edit
+                </router-link>
               </v-flex>
               <v-flex xs6>
                 <img class="album-image" :src="song.albumImageUrl" alt="">

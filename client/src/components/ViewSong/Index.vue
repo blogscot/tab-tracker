@@ -21,6 +21,12 @@
       </v-flex>
     </v-layout>
 
+    <v-layout>
+      <router-link :to="{name: 'song/edit', params: {songId: song.id}}" class="light-green lighten-2 btn">
+        Edit
+      </router-link>
+    </v-layout>
+
   </v-container>
 </template>
 
