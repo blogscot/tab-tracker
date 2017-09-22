@@ -4,8 +4,7 @@
       <panel title="Register">
         <form name="tab-tracker-form" autocomplete="off">
           <v-text-field type="email" name="email" label="Email" v-model="email" />
-          <v-text-field type="password" name="password" label="Password" v-model="password"
-            autocomplete="new-password" />
+          <v-text-field type="password" name="password" label="Password" v-model="password" autocomplete="new-password" />
           <div class="error" v-html="error"></div>
           <v-btn class="light-green lighten-2" type="submit" @click="register($event)">Register</v-btn>
         </form>
@@ -17,7 +16,6 @@
 
 <script>
 import AuthenticationService from '@/services/AuthenticationService'
-import Panel from '@/components/Panel'
 
 export default {
   data() {
@@ -27,7 +25,6 @@ export default {
       error: null
     }
   },
-  components: { Panel },
   props: [
     'title'
   ],

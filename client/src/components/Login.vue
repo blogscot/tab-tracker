@@ -13,7 +13,6 @@
 
 <script>
 import AuthenticationService from '@/services/AuthenticationService'
-import Panel from '@/components/Panel'
 
 export default {
   data() {
@@ -23,7 +22,6 @@ export default {
       error: null
     }
   },
-  components: { Panel },
   props: [
     'title'
   ],

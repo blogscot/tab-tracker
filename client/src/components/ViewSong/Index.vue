@@ -32,7 +32,6 @@
 
 <script>
 import SongService from '@/services/SongService'
-import Panel from '@/components/Panel'
 import MetaData from './MetaDataView'
 import Tab from './TabView'
 import Lyrics from './LyricsView'
@@ -50,7 +49,6 @@ export default {
     this.song = response.data
   },
   components: {
-    Panel,
     MetaData,
     Tab,
     Lyrics,

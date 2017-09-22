@@ -33,7 +33,6 @@
 </template>
 
 <script>
-import Panel from '@/components/Panel'
 import SongService from '@/services/SongService'
 export default {
   data() {
@@ -50,9 +49,6 @@ export default {
       },
       error: null
     }
-  },
-  components: {
-    Panel
   },
   methods: {
     required: value => !!value || 'Required',
