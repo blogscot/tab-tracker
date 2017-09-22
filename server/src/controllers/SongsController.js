@@ -32,5 +32,36 @@ module.exports = {
         error: 'Post: Unable to create song entry'
       })
     }
+  },
+  async update (req, res) {
+    const song = req.body
+    const songId = req.params.songId
+    try {
+      await Song.update(
+        {
+          title: song.title,
+          artist: song.artist,
+          genre: song.genre,
+          album: song.album,
+          albumImageUrl: song.albumImageUrl,
+          youtubeId: song.youtubeId,
+          lyrics: song.lyrics,
+          tab: song.tab
+        },
+        {
+          where: {
+            id: songId
+          }
+        }
+      )
+      res.status(200).send({
+        message: 'ok'
+      })
+    } catch (error) {
+      res.status(500).send({
+        error: 'Update: Unable to update song entry',
+        debug: error
+      })
+    }
   }
 }

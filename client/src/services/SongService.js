@@ -9,5 +9,8 @@ export default {
   },
   post(song) {
     return Api().post('songs', song)
+  },
+  update(songId, song) {
+    return Api().post(`song/${songId}`, song)
   }
 }

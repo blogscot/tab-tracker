@@ -7,10 +7,10 @@ module.exports = {
     options: {
       dialect: process.env.DIALECT || 'sqlite',
       host: process.env.HOST || 'localhost',
-      storage: './tabtracker.sqlite',
-    },
+      storage: './tabtracker.sqlite'
+    }
   },
   authentication: {
-    jwtSecret: process.env.JWT_SECRET || 'ac923kjckj2Iu0s',
-  },
+    jwtSecret: process.env.JWT_SECRET || 'ac923kjckj2Iu0s'
+  }
 }

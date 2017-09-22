@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import SongsService from '@/services/SongService'
+import SongService from '@/services/SongService'
 import Panel from '@/components/Panel'
 import MetaData from './MetaDataView'
 import Tab from './TabView'
@@ -40,7 +40,7 @@ export default {
   },
   async mounted() {
     const songId = this.$store.state.route.params.songId
-    const response = await SongsService.show(songId)
+    const response = await SongService.show(songId)
     this.song = response.data
   },
   components: {
