@@ -1,12 +1,14 @@
 <template>
   <panel title="Search">
-    <v-text-field label="Search by album, artist, title or genre" v-model="search">
+    <v-text-field label="Search by album, artist, title or genre" v-model="search" autofocus>
 
     </v-text-field>
   </panel>
 </template>
 
 <script>
+import _ from 'lodash'
+
 export default {
   data() {
     return {
@@ -14,7 +16,8 @@ export default {
     }
   },
   watch: {
-    search(text) {
+
+    search: _.debounce(async function(text) {
       const route = {
         name: 'songs'
       }
@@ -24,7 +27,7 @@ export default {
         }
       }
       this.$router.push(route)
-    },
+    }, 500),
     '$route.query.search': {
       immediate: true,
       handler(value) {
