@@ -1,4 +1,3 @@
-const fs = require('fs')
 const path = require('path')
 const Sequelize = require('sequelize')
 const config = require('../config/config')
@@ -11,14 +10,19 @@ const sequelize = new Sequelize(
   config.db.options
 )
 
-fs
-  .readdirSync(__dirname)
-  .filter(file => file !== 'index.js')
-  .forEach(file => {
-    const filename = path.join(__dirname, file)
-    const model = sequelize.import(filename)
-    db[model.name] = model
-  })
+// Bookmark depends on Song, and User
+// so import it last
+;['Song.js', 'User.js', 'Bookmark.js'].forEach(file => {
+  const filename = path.join(__dirname, file)
+  const model = sequelize.import(filename)
+  db[model.name] = model
+})
+
+Object.keys(db).forEach(modelName => {
+  if ('associate' in db[modelName]) {
+    db[modelName].associate(db)
+  }
+})
 
 db.sequelize = sequelize
 db.Sequelize = Sequelize
