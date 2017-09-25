@@ -1,6 +1,7 @@
 const AuthenticationController = require('./controllers/AuthenticationController')
 const AuthenticationControllerPolicy = require('./policies/AuthenticationControllerPolicy.js')
 const SongsController = require('./controllers/SongsController.js')
+const BookmarksController = require('./controllers/BookmarksController')
 
 module.exports = app => {
   app.post(
@@ -14,4 +15,6 @@ module.exports = app => {
   app.get('/songs/:songId', SongsController.show)
   app.post('/songs', SongsController.post)
   app.post('/song/:songId', SongsController.update)
+
+  app.get('/bookmarks', BookmarksController.index)
 }

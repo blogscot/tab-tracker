@@ -12,6 +12,14 @@
         <div class="headline">
           {{song.genre}}
         </div>
+        <router-link :to="{name: 'song/edit', params: {songId: song.id}}" class="light-green lighten-2 btn">
+          Edit
+        </router-link>
+
+        <v-btn v-if="isUserLoggedIn" @click="toggleBookmark" class="light-green lighten-2 btn">
+          {{ isBookmarked ? 'bookmarked' : 'bookmark'}}
+        </v-btn>
+
       </v-flex>
       <v-flex xs6>
         <img class="album-image" :src="song.albumImageUrl" alt="">
@@ -25,10 +33,40 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+import BookmarkService from '@/services/BookmarkService'
+
 export default {
+  computed: {
+    ...mapState([
+      'isUserLoggedIn',
+      'user',
+      'route'
+    ])
+  },
+  data() {
+    return {
+      isBookmarked: false
+    }
+  },
   props: [
     'song'
-  ]
+  ],
+  methods: {
+    toggleBookmark() {
+      this.isBookmarked = !this.isBookmarked
+    }
+  },
+  async mounted() {
+    if (this.isUserLoggedIn) {
+      const response = await BookmarkService.index({
+        userId: this.user.id,
+        songId: this.route.params.songId
+      })
+      const bookmark = response.data
+      this.isBookmarked = !!bookmark
+    }
+  }
 }
 </script>
 
