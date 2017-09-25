@@ -53,18 +53,30 @@ export default {
     'song'
   ],
   methods: {
-    toggleBookmark() {
+    async toggleBookmark() {
+      const params = {
+        userId: this.user.id,
+        songId: this.song.id
+      }
+      if (!this.isBookmarked) {
+        await BookmarkService.post(params)
+      } else {
+        await BookmarkService.delete(params)
+      }
       this.isBookmarked = !this.isBookmarked
     }
   },
-  async mounted() {
-    if (this.isUserLoggedIn) {
-      const response = await BookmarkService.index({
-        userId: this.user.id,
-        songId: this.route.params.songId
-      })
-      const bookmark = response.data
-      this.isBookmarked = !!bookmark
+  watch: {
+    async song() {
+      if (this.isUserLoggedIn) {
+        const response = await BookmarkService.index({
+          userId: this.user.id,
+          songId: this.song.id
+        })
+        const bookmark = response.data
+        console.log(bookmark)
+        this.isBookmarked = !!bookmark
+      }
     }
   }
 }
