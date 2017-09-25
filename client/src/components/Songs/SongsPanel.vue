@@ -53,7 +53,6 @@ export default {
       async handler(value) {
         const response = await SongsService.index(value)
         this.songs = response.data
-        console.log(this.songs)
       }
     }
   }

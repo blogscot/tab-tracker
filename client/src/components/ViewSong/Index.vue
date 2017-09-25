@@ -40,7 +40,9 @@ import YouTube from './YouTubeView'
 export default {
   data() {
     return {
-      song: null
+      song: {
+        id: 0
+      }
     }
   },
   async mounted() {

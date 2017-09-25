@@ -80,7 +80,7 @@ export default {
           console.error('Edit Song: response status: ', response.status)
         }
       } catch (error) {
-        console.log(error)
+        console.error(error)
       }
     }
   }
