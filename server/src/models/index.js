@@ -10,9 +10,9 @@ const sequelize = new Sequelize(
   config.db.options
 )
 
-// Bookmark depends on Song, and User
+// Bookmark and History depend on Song, and User
 // so import it last
-;['Song.js', 'User.js', 'Bookmark.js'].forEach(file => {
+;['Song.js', 'User.js', 'Bookmark.js', 'History.js'].forEach(file => {
   const filename = path.join(__dirname, file)
   const model = sequelize.import(filename)
   db[model.name] = model

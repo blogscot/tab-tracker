@@ -2,7 +2,8 @@
   <v-container fluid>
     <v-layout row>
       <v-flex class="pr-2">
-        <bookmarks />
+        <bookmarks class="mb-2" />
+        <history />
       </v-flex x6>
       <v-flex xs6>
         <songs-search />
@@ -16,12 +17,14 @@
 import SongsPanel from './SongsPanel'
 import SongsSearch from './SongsSearch'
 import Bookmarks from './Bookmarks'
+import History from './History'
 
 export default {
   components: {
     SongsPanel,
     SongsSearch,
-    Bookmarks
+    Bookmarks,
+    History
   }
 }
 </script>

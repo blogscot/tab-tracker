@@ -26,7 +26,7 @@ module.exports = {
       res.send(bookmarks)
     } catch (error) {
       res.status(500).send({
-        error: 'Unable to serve song data',
+        error: 'Unable to serve bookmark data',
         debug: error
       })
     }
