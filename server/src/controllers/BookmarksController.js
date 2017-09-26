@@ -3,17 +3,24 @@ const { Bookmark } = require('../models')
 module.exports = {
   async index (req, res) {
     try {
-      let bookmark = null
+      let bookmarks = null
       const { songId, userId } = req.query
+      console.log(`songId ${songId} userId ${userId}`)
       if (songId) {
-        bookmark = await Bookmark.findOne({
+        bookmarks = await Bookmark.findOne({
           where: {
             SongId: songId,
             UserId: userId
           }
         })
+      } else {
+        bookmarks = await Bookmark.findAll({
+          where: {
+            UserId: userId
+          }
+        })
       }
-      res.send(bookmark)
+      res.send(bookmarks)
     } catch (error) {
       res.status(500).send({
         error: 'Unable to serve song data',
