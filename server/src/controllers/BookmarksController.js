@@ -1,4 +1,4 @@
-const { Bookmark } = require('../models')
+const { Bookmark, Song } = require('../models')
 
 module.exports = {
   async index (req, res) {
@@ -17,8 +17,11 @@ module.exports = {
         bookmarks = await Bookmark.findAll({
           where: {
             UserId: userId
-          }
+          },
+          include: [{ model: Song }]
         })
+          .map(bookmark => bookmark.toJSON())
+          .map(bookmark => Object.assign({}, bookmark.Song, bookmark))
       }
       res.send(bookmarks)
     } catch (error) {

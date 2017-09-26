@@ -43,9 +43,10 @@ export default {
   },
   async mounted() {
     if (this.isUserLoggedIn) {
-      this.bookmarks = await BookmarkService.index({
+      const response = await BookmarkService.index({
         userId: this.user.id
-      }).data
+      })
+      this.bookmarks = response.data
     }
   }
 
