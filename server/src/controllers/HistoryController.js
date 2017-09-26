@@ -8,6 +8,7 @@ module.exports = {
         where: {
           UserId: userId
         },
+        group: ['SongId'],
         include: [{ model: Song }]
       })
         .map(history => history.toJSON())
