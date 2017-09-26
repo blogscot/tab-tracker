@@ -17,7 +17,7 @@
         </router-link>
 
         <v-btn v-if="isUserLoggedIn" @click="toggleBookmark" class="light-green lighten-2 btn">
-          {{ isBookmarked ? 'bookmarked' : 'bookmark'}}
+          {{ !!this.bookmark ? 'bookmarked' : 'bookmark'}}
         </v-btn>
 
       </v-flex>
@@ -46,7 +46,7 @@ export default {
   },
   data() {
     return {
-      isBookmarked: false
+      bookmark: null
     }
   },
   props: [
@@ -58,24 +58,28 @@ export default {
         userId: this.user.id,
         songId: this.song.id
       }
-      if (!this.isBookmarked) {
-        await BookmarkService.post(params)
+      if (this.bookmark !== null) {
+        try {
+          await BookmarkService.delete(this.bookmark.id)
+          this.bookmark = null
+        } catch (err) {
+          console.log(err)
+        }
       } else {
-        await BookmarkService.delete(params)
+        const response = await BookmarkService.post(params)
+        this.bookmark = response.data
       }
-      this.isBookmarked = !this.isBookmarked
     }
   },
   watch: {
+    // Gets called when props arrive
     async song() {
       if (this.isUserLoggedIn) {
         const response = await BookmarkService.index({
           userId: this.user.id,
           songId: this.song.id
         })
-        const bookmark = response.data
-        console.log(bookmark)
-        this.isBookmarked = !!bookmark
+        this.bookmark = response.data
       }
     }
   }

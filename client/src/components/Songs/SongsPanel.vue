@@ -69,7 +69,7 @@ export default {
 
 .song {
   padding: 20px;
-  height: 440px;
+  height: 310px;
   overflow: hidden;
 }
 

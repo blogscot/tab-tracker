@@ -32,7 +32,9 @@ module.exports = {
       })
       if (bookmarkAlreadyExists) {
         // silently ignore repeat requests
-        res.status(200).send()
+        res.status(200).send({
+          message: 'Ignoring duplicate bookmark request'
+        })
         return
       }
       const newBookmark = await Bookmark.create({
@@ -48,14 +50,11 @@ module.exports = {
   },
   async delete (req, res) {
     try {
-      console.log(req.body)
-      const { userId, songId } = req.body
-      await Bookmark.destroy({
-        where: {
-          UserId: userId,
-          SongId: songId
-        }
-      })
+      const { bookmarkId } = req.params
+      const bookmark = await Bookmark.findById(bookmarkId)
+      if (bookmark) {
+        await bookmark.destroy()
+      }
       res.status(200).send()
     } catch (error) {
       res.status(500).send({
