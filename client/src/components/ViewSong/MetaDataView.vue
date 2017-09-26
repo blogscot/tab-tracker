@@ -58,7 +58,7 @@ export default {
         userId: this.user.id,
         songId: this.song.id
       }
-      if (this.bookmark !== null) {
+      if (this.bookmark) {
         try {
           await BookmarkService.delete(this.bookmark.id)
           this.bookmark = null
