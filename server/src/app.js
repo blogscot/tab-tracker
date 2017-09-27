@@ -11,6 +11,8 @@ app.use(morgan('combined'))
 app.use(bodyParser.json())
 app.use(cors()) // Enable anyone to access server
 
+require('./passport')
+
 // inject routes
 routes(app)
 

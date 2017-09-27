@@ -4,7 +4,8 @@ module.exports = {
   async index (req, res) {
     try {
       let bookmarks = null
-      const { songId, userId } = req.query
+      const userId = req.user.id
+      const { songId } = req.query
 
       if (songId) {
         bookmarks = await Bookmark.findOne({
@@ -33,12 +34,10 @@ module.exports = {
   },
   async post (req, res) {
     try {
-      const { userId, songId } = req.body
+      const UserId = req.user.id
+      const { songId: SongId } = req.body
       const bookmarkAlreadyExists = await Bookmark.findOne({
-        where: {
-          SongId: songId,
-          UserId: userId
-        }
+        where: { SongId, UserId }
       })
       if (bookmarkAlreadyExists) {
         // silently ignore repeat requests
@@ -47,10 +46,7 @@ module.exports = {
         })
         return
       }
-      const newBookmark = await Bookmark.create({
-        UserId: userId,
-        SongId: songId
-      })
+      const newBookmark = await Bookmark.create({ UserId, SongId })
       res.send(newBookmark)
     } catch (error) {
       res.status(500).send({
@@ -59,17 +55,21 @@ module.exports = {
     }
   },
   async delete (req, res) {
+    const Error = {
+      error: 'Post: Unable to delete bookmark entry'
+    }
     try {
-      const { bookmarkId } = req.params
-      const bookmark = await Bookmark.findById(bookmarkId)
+      const UserId = req.user.id
+      const { bookmarkId: id } = req.params
+      const bookmark = await Bookmark.findOne({ where: { id, UserId } })
       if (bookmark) {
         await bookmark.destroy()
+        res.status(200).send()
+      } else {
+        res.status(403).send(Error)
       }
-      res.status(200).send()
     } catch (error) {
-      res.status(500).send({
-        error: 'Post: Unable to delete bookmark entry'
-      })
+      res.status(500).send(Error)
     }
   }
 }

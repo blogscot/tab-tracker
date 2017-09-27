@@ -54,10 +54,6 @@ export default {
   ],
   methods: {
     async toggleBookmark() {
-      const params = {
-        userId: this.user.id,
-        songId: this.song.id
-      }
       if (this.bookmark) {
         try {
           await BookmarkService.delete(this.bookmark.id)
@@ -66,7 +62,9 @@ export default {
           console.log(err)
         }
       } else {
-        const response = await BookmarkService.post(params)
+        const response = await BookmarkService.post({
+          songId: this.song.id
+        })
         this.bookmark = response.data
       }
     }
@@ -76,7 +74,6 @@ export default {
     async song() {
       if (this.isUserLoggedIn) {
         const response = await BookmarkService.index({
-          userId: this.user.id,
           songId: this.song.id
         })
         this.bookmark = response.data

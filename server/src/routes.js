@@ -3,6 +3,7 @@ const AuthenticationControllerPolicy = require('./policies/AuthenticationControl
 const SongsController = require('./controllers/SongsController.js')
 const BookmarksController = require('./controllers/BookmarksController')
 const HistoryController = require('./controllers/HistoryController')
+const isAuthenticated = require('./policies/isAuthenticated')
 
 module.exports = app => {
   app.post(
@@ -17,9 +18,13 @@ module.exports = app => {
   app.post('/songs', SongsController.post)
   app.post('/song/:songId', SongsController.update)
 
-  app.get('/bookmark', BookmarksController.index)
-  app.post('/bookmark', BookmarksController.post)
-  app.delete('/bookmark/:bookmarkId', BookmarksController.delete)
+  app.get('/bookmark', isAuthenticated, BookmarksController.index)
+  app.post('/bookmark', isAuthenticated, BookmarksController.post)
+  app.delete(
+    '/bookmark/:bookmarkId',
+    isAuthenticated,
+    BookmarksController.delete
+  )
 
   app.get('/history', HistoryController.index)
   app.post('/history', HistoryController.post)
