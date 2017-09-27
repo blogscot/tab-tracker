@@ -3,11 +3,10 @@ const { History, Song } = require('../models')
 module.exports = {
   async index (req, res) {
     try {
-      const { userId } = req.query
+      const UserId = req.user.id
+      console.log(`USERID ${UserId}`)
       const history = await History.findAll({
-        where: {
-          UserId: userId
-        },
+        where: { UserId },
         group: ['SongId'],
         include: [{ model: Song }]
       })
@@ -23,11 +22,9 @@ module.exports = {
   },
   async post (req, res) {
     try {
-      const { userId, songId } = req.body
-      const newHistory = await History.create({
-        UserId: userId,
-        SongId: songId
-      })
+      const UserId = req.user.id
+      const { songId: SongId } = req.body
+      const newHistory = await History.create({ UserId, SongId })
       res.send(newHistory)
     } catch (error) {
       res.status(500).send({

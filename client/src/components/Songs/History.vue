@@ -20,8 +20,7 @@ import HistoryService from '@/services/HistoryService'
 export default {
   computed: {
     ...mapState([
-      'isUserLoggedIn',
-      'user'
+      'isUserLoggedIn'
     ])
   },
   data() {
@@ -43,16 +42,9 @@ export default {
   },
   async mounted() {
     if (this.isUserLoggedIn) {
-      const response = await HistoryService.index({
-        userId: this.user.id
-      })
+      const response = await HistoryService.index()
       this.songs = response.data
     }
   }
-
 }
 </script>
-
-<style scoped>
-
-</style>

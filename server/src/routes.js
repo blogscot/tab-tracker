@@ -26,6 +26,6 @@ module.exports = app => {
     BookmarksController.delete
   )
 
-  app.get('/history', HistoryController.index)
-  app.post('/history', HistoryController.post)
+  app.get('/history', isAuthenticated, HistoryController.index)
+  app.post('/history', isAuthenticated, HistoryController.post)
 }

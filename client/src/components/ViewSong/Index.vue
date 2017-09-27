@@ -51,8 +51,7 @@ export default {
   computed: {
     ...mapState([
       'isUserLoggedIn',
-      'route',
-      'user'
+      'route'
     ])
   },
   async mounted() {
@@ -62,8 +61,7 @@ export default {
 
     if (this.isUserLoggedIn) {
       HistoryService.post({
-        songId: songId,
-        userId: this.user.id
+        songId: songId
       })
     }
   },
@@ -76,6 +74,3 @@ export default {
 }
 </script>
 
-<style scoped>
-
-</style>
