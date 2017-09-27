@@ -69,7 +69,7 @@ export default {
           name: 'songs'
         })
       } catch (error) {
-        console.log(error)
+        console.error(error)
       }
     }
   }

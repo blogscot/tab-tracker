@@ -4,7 +4,6 @@ module.exports = {
   async index (req, res) {
     try {
       const UserId = req.user.id
-      console.log(`USERID ${UserId}`)
       const history = await History.findAll({
         where: { UserId },
         group: ['SongId'],

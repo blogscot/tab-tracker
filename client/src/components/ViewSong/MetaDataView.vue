@@ -59,7 +59,7 @@ export default {
           await BookmarkService.delete(this.bookmark.id)
           this.bookmark = null
         } catch (err) {
-          console.log(err)
+          console.error(err)
         }
       } else {
         const response = await BookmarkService.post({
